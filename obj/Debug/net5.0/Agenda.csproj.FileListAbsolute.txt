@@ -1,0 +1,16 @@
+C:\Users\omsol\Desktop\Workspace\.NET\Agenda\bin\Debug\net5.0\Agenda.exe
+C:\Users\omsol\Desktop\Workspace\.NET\Agenda\bin\Debug\net5.0\Agenda.deps.json
+C:\Users\omsol\Desktop\Workspace\.NET\Agenda\bin\Debug\net5.0\Agenda.runtimeconfig.json
+C:\Users\omsol\Desktop\Workspace\.NET\Agenda\bin\Debug\net5.0\Agenda.runtimeconfig.dev.json
+C:\Users\omsol\Desktop\Workspace\.NET\Agenda\bin\Debug\net5.0\Agenda.dll
+C:\Users\omsol\Desktop\Workspace\.NET\Agenda\bin\Debug\net5.0\ref\Agenda.dll
+C:\Users\omsol\Desktop\Workspace\.NET\Agenda\bin\Debug\net5.0\Agenda.pdb
+C:\Users\omsol\Desktop\Workspace\.NET\Agenda\obj\Debug\net5.0\Agenda.csproj.AssemblyReference.cache
+C:\Users\omsol\Desktop\Workspace\.NET\Agenda\obj\Debug\net5.0\Agenda.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\omsol\Desktop\Workspace\.NET\Agenda\obj\Debug\net5.0\Agenda.AssemblyInfoInputs.cache
+C:\Users\omsol\Desktop\Workspace\.NET\Agenda\obj\Debug\net5.0\Agenda.AssemblyInfo.cs
+C:\Users\omsol\Desktop\Workspace\.NET\Agenda\obj\Debug\net5.0\Agenda.csproj.CoreCompileInputs.cache
+C:\Users\omsol\Desktop\Workspace\.NET\Agenda\obj\Debug\net5.0\Agenda.dll
+C:\Users\omsol\Desktop\Workspace\.NET\Agenda\obj\Debug\net5.0\ref\Agenda.dll
+C:\Users\omsol\Desktop\Workspace\.NET\Agenda\obj\Debug\net5.0\Agenda.pdb
+C:\Users\omsol\Desktop\Workspace\.NET\Agenda\obj\Debug\net5.0\Agenda.genruntimeconfig.cache
