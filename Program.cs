@@ -106,7 +106,8 @@ namespace Agenda
                         break;
 
                     case 4:
-                        removerContato(planner);
+                        Console.WriteLine("Não Removemos contato ainda!");
+                        // removerContato(planner, index);
                         break;
                     case 5:
                         Console.WriteLine("Saindo!");
@@ -243,35 +244,39 @@ namespace Agenda
                         }
         }
         public static void removerContato(Contact[] contatos, int index){
-           Console.WriteLine("Qual contato quer remover?");
-                string busca = Console.ReadLine();
-                for (var i = 0; i < contatos.Length; i++)
-                {
-                    try
-                    {
-                        if (contatos[i].primeiroNome.Contains(busca))
-                        {
-                            Console.WriteLine("Qual é o tipo de contato?");
-                            int tipoContato = int.Parse(Console.ReadLine());
+        //    Console.WriteLine("Qual contato quer remover?");
+        //         string busca = Console.ReadLine();
+        //         for (var i = 0; i < contatos.Length; i++)
+        //         {
+        //             try
+        //             {
+        //                 if (contatos[i].primeiroNome.Contains(busca))
+        //                 {
+        //                     Console.WriteLine("Qual é o tipo de contato?");
+        //                     int tipoContato = int.Parse(Console.ReadLine());
                             
-                            if ((PhoneType)contatos[i].tipoContato == (PhoneType)tipoContato)
-                            {
-                                contatos[i] = contatos[i+1];            
-                                Console.WriteLine("Contato Removido");
-                            }else{
-                                Console.WriteLine("Não há contato para remover!");
-                            }
+        //                     if ((PhoneType)contatos[i].tipoContato == (PhoneType)tipoContato)
+        //                     {
+        //                        for (var j = 0; j < contatos.Length; j++)
+        //                        {
+        //                             contatos[i] = contatos[i+1];            
+        //                        }
+        //                             Console.WriteLine("Contato Removido");
+        //                             index --;
+        //                     }else{
+        //                         Console.WriteLine("Não há contato para remover!");
+        //                     }
                             
-                        }
+        //                 }
                         
-                    }
-                    catch (System.Exception ex)
-                    {
-                        // Console.WriteLine(ex);
-                        //  Console.WriteLine("Posição Vazia"+ i);
-                    }
+        //             }
+        //             catch (System.Exception ex)
+        //             {
+        //                 // Console.WriteLine(ex);
+        //                 //  Console.WriteLine("Posição Vazia"+ i);
+        //             }
                     
-                }
+        //         }
         }
     }
 }
