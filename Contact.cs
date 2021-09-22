@@ -10,7 +10,7 @@ namespace Agenda{
             public Contact(string name  , string lastname, string phone, 
             string emailAddress, string city, string district, string state,
             string address, PhoneType type, 
-            string observation, DateTime birthday)
+            string observation, string birthday)
                 {   
                     primeiroNome = name;
                     sobrenome = lastname;         
@@ -38,7 +38,7 @@ namespace Agenda{
                 public string estado { get; set; }
                 public string bairro { get; set; }
                 public string endereco { get; set; }
-                public DateTime dataNascimento{get; set;}
+                public string dataNascimento{get; set;}
                 public string observacao{get; set;}
 
                 public string toString(){

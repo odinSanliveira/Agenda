@@ -1,16 +1,17 @@
 ﻿using System;
+using System.Linq;
 
 namespace Agenda
 {
     class Program
-    {
+    {       static bool running = true;
+            static Contact[] planner = new Contact[100];
+            static int index = 0;
         static void Main(string[] args)
         {
             Console.WriteLine("Funfando");
 
-            bool running = true;
-            Contact[] planner = new Contact[100];
-            int index = 0;
+            
 
             while (running)
             {
@@ -39,7 +40,8 @@ namespace Agenda
                             Console.WriteLine("*--*--*--*--*--*");
                             Console.WriteLine("Data de nascimento: DD/MM/AAAA");
                             string nascimento = Console.ReadLine();
-                            contato.dataNascimento = Convert.ToDateTime(nascimento);
+                            // contato.dataNascimento = Convert.ToDateTime(nascimento);
+                            contato.dataNascimento = nascimento;
                             Console.WriteLine("Tipo de contato");
                             Console.WriteLine("*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*");
                             Console.WriteLine("1 - Celular, 2 - Trabalho, 3 - Casa, 4 - Principal");
@@ -67,9 +69,9 @@ namespace Agenda
                             string observacao = Console.ReadLine();
                             contato.observacao = observacao;
                             planner[index] = contato;
-                            Console.WriteLine($"O index atual é {index}");
-                            index++;
-                            Console.WriteLine($"O index passou a ser {index}");
+                            // Console.WriteLine($"O index atual é {index}");
+                            // index++;
+                            // Console.WriteLine($"O index passou a ser {index}");
                         }else{
 
                             Console.WriteLine("Não há mais espaço na agenda");
@@ -78,36 +80,16 @@ namespace Agenda
                         break;
 
                     case 2:
-                        listarTodosContatos(planner);                        
+                        listarTodosContatos();                        
                         break;
                     case 3:
-                        Console.WriteLine("Qual o tipo de busca quer fazer?");
-                        Console.WriteLine("1 - Nome, 2 - Nome Completo, 3 - Email");
-                        Console.WriteLine("4 - Cidade, 5 - Tipo de Telefone");
-                        int escolhaDeBusca =  int.Parse(Console.ReadLine());
-                        if (escolhaDeBusca == 1)
-                        {   
-                            procuraPorNome(planner);
-                            
-                        }else if(escolhaDeBusca == 2){
-                            procuraPorNomeCompleto(planner);
-                        
-                        }else if(escolhaDeBusca == 3){
-                            procuraPorEmail(planner);
-                        
-                        }else if(escolhaDeBusca == 4){
-                            procuraPorCidade(planner);
-                        
-                        }else if(escolhaDeBusca == 5){
-                            procuraPorTipo(planner);
-                        }
-
-
+                        busca();
                         break;
 
                     case 4:
-                        Console.WriteLine("Não Removemos contato ainda!");
-                        // removerContato(planner, index);
+                        Console.WriteLine("Qual nome quer remover?");
+                        string nomeParaRemocao = Console.ReadLine();
+                        removerContato(nomeParaRemocao);
                         break;
                     case 5:
                         Console.WriteLine("Saindo!");
@@ -121,18 +103,19 @@ namespace Agenda
             }
         }
 
-        public static void procuraPorNomeCompleto(Contact[] contatos){
+        public static void procuraPorNomeCompleto(){
             Console.WriteLine("Qual é o nome que busca?");
                 string busca = Console.ReadLine();
-                for (var i = 0; i < contatos.Length; i++)
+                for (var i = 0; i < planner.Length; i++)
                 {   
-                    //bool contains = clientList.Any(client => client.ClientName == userNickname);
+                    
                     try
                     {
-                        if (contatos[i].nomeCompleto.Contains(busca))
+                        if (string.Equals(busca, planner[i].nomeCompleto, StringComparison.InvariantCultureIgnoreCase))
                         {
-                            Console.WriteLine(contatos[i].toString());
-                            // Console.WriteLine(planner[i].toString());
+                            Console.WriteLine(planner[i].toString());
+                            Console.WriteLine(diaDoAniversario(i));
+                            
                         }
                         
                     }
@@ -145,16 +128,18 @@ namespace Agenda
                     
                 }
         }
-        public static void procuraPorNome(Contact[] contatos){
+        public static void procuraPorNome(){
             Console.WriteLine("Qual é o nome que busca?");
                 string busca = Console.ReadLine();
-                for (var i = 0; i < contatos.Length; i++)
+                for (var i = 0; i < planner.Length; i++)
                 {
                     try
                     {
-                        if (contatos[i].nomeCompleto.Contains(busca))
+                        if (string.Equals(busca, planner[i].primeiroNome, StringComparison.InvariantCultureIgnoreCase))
                         {
-                            Console.WriteLine(contatos[i].toString());
+                            Console.WriteLine(planner[i].toString());
+                            Console.WriteLine(diaDoAniversario(i));
+
                         }
                         
                     }
@@ -165,16 +150,17 @@ namespace Agenda
                     
                 }
         }
-        public static void procuraPorEmail(Contact[] contatos){
+        public static void procuraPorEmail(){
             Console.WriteLine("Qual é o Email que busca?");
                 string busca = Console.ReadLine();
-                for (var i = 0; i < contatos.Length; i++)
+                for (var i = 0; i < planner.Length; i++)
                 {
                     try
                     {
-                        if (contatos[i].email.Contains(busca))
+                        if (string.Equals(busca, planner[i].email, StringComparison.InvariantCultureIgnoreCase))
                         {
-                            Console.WriteLine(contatos[i].toString());
+                            Console.WriteLine(planner[i].toString());
+                            Console.WriteLine(diaDoAniversario(i));
                         }
                         
                     }
@@ -186,16 +172,17 @@ namespace Agenda
                     
                 }
         }
-        public static void procuraPorCidade(Contact[] contatos){
+        public static void procuraPorCidade(){
             Console.WriteLine("Qual é o cidade do seu contato?");
                 string busca = Console.ReadLine();
-                for (var i = 0; i < contatos.Length; i++)
+                for (var i = 0; i < planner.Length; i++)
                 {
                     try
                     {
-                        if (contatos[i].cidade.Contains(busca))
+                        if (string.Equals(busca, planner[i].cidade, StringComparison.InvariantCultureIgnoreCase))
                         {
-                            Console.WriteLine(contatos[i].toString());
+                            Console.WriteLine(planner[i].toString());
+                            Console.WriteLine(diaDoAniversario(i));
                         }
                         
                     }
@@ -207,20 +194,21 @@ namespace Agenda
                     
                 }
         }
-        public static void procuraPorTipo(Contact[] contatos){
+        public static void procuraPorTipo(){
             Console.WriteLine("Qual é tipo seu contato?");
             Console.WriteLine("*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*");
             Console.WriteLine("1 - Celular, 2 - Trabalho, 3 - Casa, 4 - Principal");
             Console.WriteLine("5 - Pager, 6 - Fax Trabalho, 7 - Fax Casa, 8 - Outro");
             Console.WriteLine("*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*");
                int busca = int.Parse(Console.ReadLine());
-                for (var i = 0; i < contatos.Length; i++)
+                for (var i = 0; i < planner.Length; i++)
                 {
                     try
                     {
-                        if ((PhoneType)contatos[i].tipoContato == (PhoneType)busca)
+                        if ((PhoneType)planner[i].tipoContato == (PhoneType)busca)
                         {
-                            Console.WriteLine(contatos[i].toString());
+                            Console.WriteLine(planner[i].toString());
+                            Console.WriteLine(diaDoAniversario(i));
                         }
                         
                     }
@@ -233,50 +221,65 @@ namespace Agenda
                 }
         }
 
-        public static void listarTodosContatos(Contact[] contatos){
+        public static void listarTodosContatos(){
             Console.WriteLine("Listar todos os contatos");
-                        for (var i = 0; i < contatos.Length; i++)
-                        {   if (contatos[i].primeiroNome != null)
+                        for (var i = 0; i < planner.Length; i++)
+                        {   if (planner[i].primeiroNome != null)
                             {
-                                Console.WriteLine(contatos[i].toString());
+                                Console.WriteLine(planner[i].toString());
+                                
                             }
                             
                         }
         }
-        public static void removerContato(Contact[] contatos, int index){
-        //    Console.WriteLine("Qual contato quer remover?");
-        //         string busca = Console.ReadLine();
-        //         for (var i = 0; i < contatos.Length; i++)
-        //         {
-        //             try
-        //             {
-        //                 if (contatos[i].primeiroNome.Contains(busca))
-        //                 {
-        //                     Console.WriteLine("Qual é o tipo de contato?");
-        //                     int tipoContato = int.Parse(Console.ReadLine());
-                            
-        //                     if ((PhoneType)contatos[i].tipoContato == (PhoneType)tipoContato)
-        //                     {
-        //                        for (var j = 0; j < contatos.Length; j++)
-        //                        {
-        //                             contatos[i] = contatos[i+1];            
-        //                        }
-        //                             Console.WriteLine("Contato Removido");
-        //                             index --;
-        //                     }else{
-        //                         Console.WriteLine("Não há contato para remover!");
-        //                     }
-                            
-        //                 }
-                        
-        //             }
-        //             catch (System.Exception ex)
-        //             {
-        //                 // Console.WriteLine(ex);
-        //                 //  Console.WriteLine("Posição Vazia"+ i);
-        //             }
-                    
-        //         }
+        public static void busca(){
+            Console.WriteLine("Qual o tipo de busca quer fazer?");
+            Console.WriteLine("1 - Nome, 2 - Nome Completo, 3 - Email");
+            Console.WriteLine("4 - Cidade, 5 - Tipo de Telefone");
+            int escolhaDeBusca =  int.Parse(Console.ReadLine());
+            if (escolhaDeBusca == 1)
+            {   
+                procuraPorNome();
+                
+            }else if(escolhaDeBusca == 2){
+                procuraPorNomeCompleto();
+            
+            }else if(escolhaDeBusca == 3){
+                procuraPorEmail();
+            
+            }else if(escolhaDeBusca == 4){
+                procuraPorCidade();
+            
+            }else if(escolhaDeBusca == 5){
+                procuraPorTipo();
+            }
+        }
+        public static void removerContato(string nome){
+            
+            for (int i = 0; i < planner.Length; i++){
+                if(planner[i].primeiroNome != null) {
+                    if(planner[i].primeiroNome == nome){
+                        planner = planner.Where((e, contact) => contact != i).ToArray();
+                    }
+                }
+            }
+        }
+
+        public static string diaDoAniversario(int index){
+            DateTime hoje = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);    
+            string[] diaDoAniversario = planner[index].dataNascimento.Split('/');
+            DateTime aniversario = new DateTime(DateTime.Today.Year,int.Parse(diaDoAniversario[1]),int.Parse(diaDoAniversario[0]));
+
+            if (hoje == aniversario){
+                return "Parabéns hoje é seu aniversário!!";
+            }else if(hoje > aniversario){
+                return "Seu aniversário já passou!";
+                       
+            }else{
+                return $"Ainda faltam {aniversario.Subtract(DateTime.Today).TotalDays} dias!";
+            }
+
+
         }
     }
 }
